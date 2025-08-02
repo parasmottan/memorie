@@ -1,7 +1,4 @@
-import Cookies from 'js-cookie';
-
-
 export const isAuthenticated = () => {
-  const token = Cookies.get('token');
-  return !!token;
-}
+  const user = localStorage.getItem("user");
+  return !!user && JSON.parse(user)?.token;
+};
