@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Italianno&family=Lalezar&family=League+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Mochiy+Pop+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Moon+Dance&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Calligraffitti&family=Mochiy+Pop+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Moon+Dance&display=swap');
+@import "tailwindcss";
+
+
+
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-0.5px, 0.5px); }
+  80% { transform: translate(1px, 1px); }
+}
+
+.animate-grain {
+  animation: grain 1.5s steps(5) infinite;
+}
+
+
+/* index.css ya global.css mein */
+body, html {
+  margin: 0;
+  padding: 0;
+  
+  background-color: black;
+  color: white;
+
+  box-sizing: border-box;
+}
+
+
+
+.unicornstudio-badge {
+  display: none !important;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
