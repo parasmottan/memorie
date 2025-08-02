@@ -5,7 +5,7 @@ const API = axios.create({
   withCredentials: true,
 });
 
-// 🔑 Inject token dynamically on every request
+
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {

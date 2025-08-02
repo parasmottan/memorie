@@ -19,16 +19,16 @@ function LoginCard() {
 
       toast.success(res.data.message || "Login successful");
 
-      if (res.data.user && res.data.token) {
-        // ✅ Combine user and token
-        const fullUser = { ...res.data.user, token: res.data.token };
-        localStorage.setItem('user', JSON.stringify(fullUser));
+if (res.data.user && res.data.token) {
+  const fullUser = { ...res.data.user, token: res.data.token };
 
-        // ✅ Optional: attach to axios
-        API.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+  localStorage.setItem('user', JSON.stringify(fullUser));
+  localStorage.setItem('token', res.data.token); // 🔑 this line is essential
 
-        navigate('/home', { state: { user: fullUser } });
-      } else {
+  API.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+
+  navigate('/home', { state: { user: fullUser } });
+} else {
         toast.error("No user data returned from server");
       }
 

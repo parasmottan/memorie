@@ -64,12 +64,9 @@ function Input(props) {
       formData.append('title', title);
       formData.append('description', description);
 
-      const token = JSON.parse(localStorage.getItem("user"))?.token;
-
       const res = await API.post('/api/memory/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
         },
         onUploadProgress: (progressEvent) => {
           const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -78,7 +75,16 @@ function Input(props) {
       });
 
       toast.success("Memory created!");
-      props.onSuccess?.();
+
+      // ✅ Reset fields
+      setTitle('');
+      setDescription('');
+      setFile(null);
+      setAudio(null);
+      setVideo(null);
+      fileInputRef.current.value = '';
+
+      props.onSuccess?.(res.data.memory);
     } catch (err) {
       toast.error(err.response?.data?.message || "Upload failed");
     } finally {

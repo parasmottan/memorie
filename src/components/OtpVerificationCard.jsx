@@ -50,6 +50,7 @@ localStorage.setItem("user", JSON.stringify({
   ...res.data.user,
   token: res.data.token   // ✅ Include token from backend response
 }));
+      localStorage.setItem("token", res.data.token);
       console.log("✅ USER SAVED:", res.data.user);
 
       navigate('/home', { replace: true });

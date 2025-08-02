@@ -25,12 +25,7 @@ function HomePage() {
 
   const fetchMemories = async () => {
     try {
-      const token = JSON.parse(localStorage.getItem("user"))?.token;
-      const res = await API.get('/api/memory/all', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await API.get('/api/memory/all');
       setMemories(res.data.memories);
     } catch (err) {
       console.error("Error fetching memories", err);
@@ -45,12 +40,22 @@ function HomePage() {
         user = location.state.user;
         localStorage.setItem("user", JSON.stringify(user));
         setUsername(user.username || "Guest");
+
+        // ✅ Set token globally for axios
+        if (user?.token) {
+          API.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+        }
       } else {
         const stored = localStorage.getItem("user");
         if (stored && stored !== "undefined") {
           try {
             user = JSON.parse(stored);
             setUsername(user.username || "Guest");
+
+            // ✅ Set token globally for axios
+            if (user?.token) {
+              API.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+            }
           } catch (e) {
             localStorage.removeItem("user");
           }
@@ -66,6 +71,9 @@ function HomePage() {
           };
           localStorage.setItem("user", JSON.stringify(fullUser));
           setUsername(fullUser.username || "Guest");
+
+          // ✅ Set token globally for axios
+          API.defaults.headers.common['Authorization'] = `Bearer ${fullUser.token}`;
           user = fullUser;
         } catch (err) {
           return navigate("/login");
@@ -79,7 +87,6 @@ function HomePage() {
     init();
   }, [location.key]);
 
-  // ✅ Auto show CenterBox again when all memories are deleted
   useEffect(() => {
     if (memories.length === 0) {
       setShowCenterBox(true);
@@ -191,17 +198,17 @@ function HomePage() {
           />
         )}
 
-        {/* ✅ Show CenterBox if no memories */}
+        {/* CenterBox if no memories */}
         {memories.length === 0 && showCenterBox && (
           <CenterBox onClick={handleUpload} />
         )}
 
-        {/* ✅ Show memories grid */}
+        {/* Memory grid */}
         {memories.length > 0 && !showInputBox && (
           <MasonryMemories memories={memories} setMemories={setMemories} />
         )}
 
-        {/* ✅ Floating + button */}
+        {/* Floating + button */}
         {memories.length > 0 && !showInputBox && (
           <button
             onClick={() => setShowInputBox(true)}
@@ -211,7 +218,7 @@ function HomePage() {
           </button>
         )}
 
-        {/* ✅ Show Input component */}
+        {/* Input form */}
         {showInputBox && (
           <Input
             onClick={() => setShowInputBox(false)}
