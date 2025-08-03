@@ -2,6 +2,13 @@
 
 Memorie is a full-stack web application where users can upload and preserve their precious memories — in the form of images, audio notes, and descriptive text. Built with the MERN stack, this app allows OTP-based authentication, secure memory uploads, and a beautiful UI to view and relive each moment.
 
+
+## 🌐 Live Demo
+
+[🔗 memorie.vercel.app](https://memoriekeeper.vercel.app/)
+
+
+
 ## 🚀 Features
 
 - 🔐 **OTP-based User Registration & Login**  
