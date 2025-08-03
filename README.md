@@ -1,12 +1,46 @@
-# React + Vite
+# 🧠 Memorie – A Personal Memory Board App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Memorie is a full-stack web application where users can upload and preserve their precious memories — in the form of images, audio notes, and descriptive text. Built with the MERN stack, this app allows OTP-based authentication, secure memory uploads, and a beautiful UI to view and relive each moment.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 **OTP-based User Registration & Login**  
+- 🧾 **JWT Authentication & Protected Routes**
+- 🖼️ **Upload Photos and Audio Memories (up to 100MB)**
+- 🧠 **Memory Cards with Titles, Descriptions & Creation Time**
+- 🧊 **Modern UI with Custom Audio Player**
+- 💬 **Floating '+' Button to Create Memories Instantly**
+- 🧱 **Responsive Masonry Layout for Memory Gallery**
+- ☁️ **Cloudinary + Filebase Storage Support**
 
-## Expanding the ESLint configuration
+## 🧩 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Frontend:**  
+- React.js  
+- Tailwind CSS  
+- React Router  
+- Axios  
+- Framer Motion (animations)
+
+**Backend:**  
+- Node.js + Express.js  
+- MongoDB + Mongoose  
+- JWT for authentication  
+- Multer + Cloudinary (for file uploads)  
+- Nodemailer (for sending OTPs)
+
+## 🔐 Authentication Flow
+
+1. User registers using email  
+2. An OTP is sent via email (valid for 10 mins)  
+3. Upon verification, JWT token is generated and stored securely  
+4. Protected routes are accessible only with valid token
+
+## 📸 Memory Upload Flow
+
+- User can upload an image, audio note, and a small description  
+- Files are stored securely using Cloudinary  
+- Each memory is rendered as a responsive card with full details
+
+## 📁 Folder Structure (Backend)
+
